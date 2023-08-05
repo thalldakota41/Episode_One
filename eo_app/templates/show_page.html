@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'css/show_page.css' %}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ show.title }}</title>
+</head>
+<body>
+    <div class="container-2">
+        <!-- API poster of the show -->
+        <div class="poster">
+            <img src="https://image.tmdb.org/t/p/w500/{{ show_info.poster_path }}">
+            <!-- link to the screenplay available for pdf download -->
+            {% if show.script %}
+            <div class="show-screenplay">
+                <button><a href="{{ show.script.url }}" target="_blank">Read Me</a></button>  
+            </div>
+            {% endif %}  
+        </div>
+        
+        <div class="data-container">
+            <!-- Title of the show -->
+            <div class="show-title">
+                <h1>{{ show.title }}</h1>
+            </div>
+
+            <!-- Show creator and link to their bio and all their screenplays available in our database -->
+            <div class="show-creator">
+                <p>Creator:
+                    {% for creator in show.creators.all %}
+                        <a href="{% url 'creator' creator.id %}">{{ creator.name }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+            </div>
+            
+            
+            <!-- API synopsis of the show -->
+            <div class="show-overview">
+                <p>{{ show_info.overview }}</p>
+                
+                    <h3>Genres</h3>
+                    <div class="tags">
+                        {% for tag in show.tags.all %}
+                        <ul>
+                            <li>{{ tag }}</li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                
+            </div>
+        </div>  
+    </div> 
+    <div class="rec-title">
+        <h5>Recommended Scripts</h5>
+    </div>
+    <div class="rec-nav-bar">
+        {% for title, data in recom_data.items %}
+            <a href="{% url 'show_page' data.id %}" class="rec-poster">
+                <img src="https://image.tmdb.org/t/p/w500/{{ data.poster_path }}">
+                <div class="poster-overlay">
+                    <h3 class="poster-title">{{ title }}</h3>
+                    <p class="poster-creator">{{ data.creator }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</body>
+
+{% endblock content %}
+</html>
+
+

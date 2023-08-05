@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'css/creator_page.css' %}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ show.title }}</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="poster">
+                    {% if creator_image %}
+                        <img src="{{ creator_image }}" alt="Creator Image">
+                    {% else %}
+                        <img src="/static/images/default_creator_image.jpg" alt="Default Creator Image">
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <h1>{{ creator.name }}</h1>
+                <div>
+                    {% if creator_info.biography %}
+                        <p class="biography">{{ creator_info.biography }}</p>
+                    {% else %}
+                        <p class="biography">We are sorry for the inconvenience and to {{ creator.name }} for a lack of information on their amazing career. Updates coming soon!</p>
+                    {% endif %}
+                </div>
+                
+                <div class="expand-button">
+                    <button id="expand-button" onclick="toggleBioContent()">Expand</button>
+                </div>
+                <div>
+                    <h2>Current Shows in Database</h2>
+                    <div class="db-scripts">
+                        <ul>
+                            {% for show_info in show_data_list %}
+                                <li>
+                                    <a href="{% url 'show_page' show_info.id %}">
+                                        <div class="creator-script-poster">
+                                            <img src="{{ show_info.poster_url }}" alt="{{ show_info.show }}">
+                                            <p class="poster-title">{{ show_info.show }}</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="recom-creator-title">
+        <h3>Similar Creators</h3>
+    </div>
+    <div class="rec-nav-bar-creator">
+        {% for creator_id, creator_data in recom_creators.items %}
+            <a href="{% url 'creator' creator_id %}" class="rec-poster">
+                {% if creator_data.profile_path %}
+                    <img src="https://image.tmdb.org/t/p/w500/{{ creator_data.profile_path }}" alt="Creator Image">
+                {% else %}
+                    {% if creator_data.creator_obj.image %}
+                        <img src="{{ creator_data.creator_obj.image.url }}" alt="Creator Image">
+                    {% else %}
+                        <img src="/static/images/default_creator_image.jpg" alt="Default Creator Image">
+                    {% endif %}
+                {% endif %}
+                <div class="poster-overlay">
+                    <h4 class="poster-creator-name">{{ creator_data.name }}</h4>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    
+</body>
+</html>
+{% endblock content %}

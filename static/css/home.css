@@ -1,0 +1,546 @@
+
+/* section for banner sytling */
+
+/* Custom banner styles */
+/* Custom banner styles */
+/* Custom banner styles */
+/* Custom banner styles */
+.banner {
+  position: relative;
+  width: 100%;
+  max-height: 300px;
+  text-align: left;
+  overflow: hidden;
+}
+
+.banner-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+.banner h1 {
+  font-size: 48px;
+  font-weight: bold;
+  color: #333333;
+  margin: 0;
+}
+
+.banner p {
+  font-size: 24px;
+  color: #333333;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.banner h1, .banner p {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 0;
+}
+
+
+
+
+
+/* ending of section for banner styling */
+
+/* THIS IS THE START OF THE RECENTLY-ADDED-PILOTS SECTION*/
+.rec-added-tv-shows {
+  background-color: #D4AF37;
+  overflow-x: auto;
+}
+
+.rec-added-tv-posters {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.rec-added-tv-poster {
+  position: relative;
+  margin: 10px;
+}
+
+.rec-added-tv-poster:last-child {
+  margin-right: 0;
+}
+
+.rec-added-tv-poster img {
+  width: 300px;
+  height: 400px;
+}
+
+.rec-added-tv-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: black;
+  opacity: 0;
+  transition: opacity 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.rec-added-tv-poster:hover .rec-added-tv-details {
+  opacity: 1;
+}
+
+
+.rec-added-tv-shows-header{
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-left: 15px;
+}
+
+.rec-added-tv-details p {
+  margin: 0;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.rec-added-tv-details h3,
+.rec-added-tv-details p {
+  margin: 0;
+  padding: 10px;
+}
+
+.rec-added-tv-title{
+  font-size: 24px;
+}
+
+.rec-added-tv-details p {
+  font-size: 16px;
+}
+
+.rec-added-tv-details a {
+  color: black;
+  font-weight: bold;
+}
+
+.rec-added-tv-details .creators-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.rec-added-tv-details .creators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.rec-added-tv-details .creators a {
+  white-space: nowrap;
+  margin: 5px;
+}
+
+/* THIS ENDS THE RECENTLY ADDED PILOTS SECTION */
+
+
+  /* THIS IS THE START OF THE STAFF FAVORITES SECTION */
+
+  .staff-favorites {
+    padding: 20px;
+  }
+  
+  .staff-favorites-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: underline;
+  }
+  
+  .staff-favorites-show-list {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1);
+  }
+  
+  .staff-favorites-show-item {
+    flex-shrink: 0;
+    margin-right: 10px;
+  }
+  
+  .staff-favorites-show-poster {
+    position: relative;
+    width: 200px;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  
+  .staff-favorites-poster {
+    width: 100%;
+    height: auto;
+    height: 250px;
+    transition: transform 0.3s;
+  }
+  
+  .staff-favorites-show-poster:hover {
+    transform: scale(1.05);
+  }
+  
+  .staff-favorites-poster-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(243, 230, 183, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+  
+  .staff-favorites-show-poster:hover .staff-favorites-poster-overlay {
+    opacity: 0;
+  }
+  
+  .staff-favorites-poster-title {
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+  }
+  
+  /* Additional CSS for scrollbar customization */
+  .staff-favorites-show-list::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .staff-favorites-show-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .staff-favorites-show-list::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .staff-favorites-show-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Style for the "More" link in the Staff Favorites section */
+.more-link-staff-favorites {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px; /* Adjust the width to fit your design */
+  height: 250px; /* Adjust the height to match the posters */
+  background-color: #F3E6B7; /* Use the same background color as the posters */
+  border-radius: 10px; /* Match the border radius of the posters */
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+/* Hover effect for the "More" link in the Staff Favorites section */
+.more-link-staff-favorites:hover {
+  background-color: #D4AF37; /* Change the background color on hover */
+  transform: scale(1.05); /* Increase the size on hover for a subtle effect */
+}
+
+/* Optional: Add some margin between the last poster and the "More" link in Staff Favorites */
+.staff-favorites-show-item:last-child {
+  margin-right: 20px;
+}
+
+
+  
+
+/* THIS IS THE END OF STAFF FAVORITES SECTION */
+
+
+
+/* THIS IS THE START OF THE MOST INFLUENTIAL SCRIPTS  */
+
+ .influential-shows {
+    padding: 20px;
+  }
+   
+
+  .influential-shows-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: underline;
+  }
+  
+  .influential-shows-show-list {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1);
+  }
+  
+  .influential-shows-show-item {
+    flex-shrink: 0;
+    margin-right: 10px;
+  }
+  
+  .influential-shows-show-poster {
+    position: relative;
+    width: 200px;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  
+  .influential-shows-poster {
+    width: 100%;
+    height: auto;
+    height: 250px;
+    transition: transform 0.3s;
+  }
+  
+  .influential-shows-show-poster:hover {
+    transform: scale(1.05);
+  }
+  
+  .influential-shows-poster-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(243, 230, 183, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+  
+  .influential-shows-show-poster:hover .influential-shows-poster-overlay {
+    opacity: 0;
+  }
+  
+  .influential-shows-poster-title {
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+  }
+  
+  /* Additional CSS for scrollbar customization */
+  .influential-shows-show-list::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .influential-shows-show-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .influential-shows-show-list::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .influential-shows-show-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Style for the "More" link */
+.more-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px; /* Adjust the width to fit your design */
+  height: 250px; /* Adjust the height to match the posters */
+  background-color: #F3E6B7; /* Use the same background color as the posters */
+  border-radius: 10px; /* Match the border radius of the posters */
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+/* Hover effect for the "More" link */
+.more-link:hover {
+  background-color: #D4AF37; /* Change the background color on hover */
+  transform: scale(1.05); /* Increase the size on hover for a subtle effect */
+}
+
+/* Optional: Add some margin between the last poster and the "More" link */
+.influential-shows-show-item:last-child {
+  margin-right: 20px;
+}
+
+
+  
+  /* THIS IS THE END OF INFLUENTIAL SHOWS SECTION */
+  
+
+
+
+
+
+
+
+
+
+
+ /* THIS IS THE START OF THE FOOTER */
+
+
+
+
+
+
+  /* END OF FOOTER STYLING */
+
+  
+/* THIS IS THE START OF THE CREATOR OF THE MONTH SECTION */
+.creators-of-the-month {
+  padding: 20px;
+}
+
+.creator-of-the-month-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-decoration: underline;
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+.creator-of-the-month-list {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.individual-creator-of-the-month {
+  /* margin-right: 10px; */
+  margin-left: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+.individual-creator-of-the-month:last-child {
+  margin-right: 0;
+}
+
+.individual-creator-of-the-month-image {
+  width: 150px;
+  height: 270px;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+} 
+
+.individual-creator-of-the-month-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px 0 0 10px;
+}
+
+.individual-creator-of-the-month-details {
+  background-color: #F3E6B7; 
+  padding: 10px;
+  width: 300px;
+  height: 270px;
+  border-radius: 0 10px 10px 0;
+  margin-left: -10px; 
+  align-content: left;
+} 
+
+
+
+
+
+.individual-creator-of-the-month-details h3 a {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: black; 
+  text-decoration: none; 
+}
+
+.individual-creator-of-the-month-details h3 a:hover {
+  text-decoration: underline; 
+}
+
+.individual-creator-of-the-month-details ul li {
+  display: inline-block;
+  margin-right: 5px;
+  text-align: right;
+}
+
+.individual-creator-of-the-month-details ul li img {
+  width: 150px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.individual-creator-of-the-month-details p {
+  font-size: 14px;
+}
+
+.individual-creator-of-the-month-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.individual-creator-of-the-month .individual-creator-of-the-month-details {
+  width: 300px;
+}
+
+.individual-creator-of-the-month .individual-creator-of-the-month-details ul li img {
+  width: 60px; 
+  height: auto;
+  max-height: 80px; 
+}
+
+.individual-creator-of-the-month .individual-creator-of-the-month-details p {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+
+/* THIS ENDS THE CREATOR OF THE MONTH SECTION */
+
+
+
+
+
+
+
+
+
+
+

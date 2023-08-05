@@ -1,0 +1,82 @@
+/* Existing styles */
+
+.paddingTB60 {
+  padding: 60px 0px 60px 0px;
+}
+
+.gray-bg {
+  background: #F1F1F1 !important;
+}
+
+.about-title {}
+
+.about-title h1 {
+  color: #535353;
+  font-size: 45px;
+  font-weight: 600;
+}
+
+.about-title span {
+  color: #D4AF37;
+  font-size: 45px;
+  font-weight: 700;
+}
+
+.about-title h3 {
+  color: #535353;
+  font-size: 23px;
+  margin-bottom: 24px;
+}
+
+.about-title p {
+  color: #7a7a7a;
+  line-height: 1.8;
+  margin: 0 0 15px;
+}
+
+.about-paddingB {
+  padding-bottom: 12px;
+}
+
+.about-img {
+  padding-left: 57px;
+}
+
+.about-section {
+  margin-top: 0;
+  background-color: #F1F1F1;
+}
+
+.container {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.fair-notice-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fair-notice-container h2 {
+  color: #535353;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.fair-notice-container p {
+  color: #7a7a7a;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Media query to adjust styles for smaller screens */
+@media (max-width: 767px) {
+  .fair-notice-container {
+    padding: 30px;
+  }
+}

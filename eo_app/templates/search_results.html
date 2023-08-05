@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/search_results_page.css' %}">
+</head>
+<body>
+  <div class="search-results-count">
+    <p>Showing {{ results.paginator.count }} results for: {{ search_term }}</p> 
+  </div>
+  
+  <div class="search-results">
+    {% for show in results %}
+      <div class="search-result">
+        {% if show.poster %}
+          <img src="{{ show.poster.url }}" alt="{{ show.title }} Poster">
+          <div class="poster-overlay">
+            <div class="title"><a href="{% url 'show_page' show.id %}">{{ show.title }}</a></div>
+            <div class="creators">
+              {% for creator in show.creators.all %}
+              <a href="{% url 'creator' creator.id %}">{{ creator.name }}</a>{% if not forloop.last %}, {% endif %}  
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>No results found.</p>
+    {% endfor %}
+  </div>
+  
+  <div class="pagination">
+    {% if results.has_previous %}
+      <a href="?page={{ results.previous_page_number }}">Prev</a>
+    {% endif %}
+  
+    <p>Page {{ results.number }} of {{ results.paginator.num_pages }}</p>
+  
+    {% if results.has_next %}
+      <a href="?page={{ results.next_page_number }}">Next</a>
+    {% endif %}
+  </div>
+</body>
+</html>
+{% endblock %}

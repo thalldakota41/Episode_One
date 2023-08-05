@@ -1,0 +1,9 @@
+.container-fluid {
+    /* padding: 30px 20px; */
+    /* position: relative; */
+    margin: auto;
+  }
+
+  h1{
+      text-align: center;
+  }
