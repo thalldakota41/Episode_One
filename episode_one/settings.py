@@ -174,13 +174,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # for email confirmations and setup
-from .secrets import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
+# from .secrets import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
+email = os.environ["EMAIL_USER"]
+if "@" not in email:
+    raise ValueError("Invalid email address")
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_HOST_USER = os.environ["EMAIL_USER"]
+EMAIL_HOST_PASSWORD = os.environ["EMAIL_PASSWORD"]
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
