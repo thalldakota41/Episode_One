@@ -175,9 +175,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # for email confirmations and setup
 # from .secrets import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
-email = os.environ["EMAIL_USER"]
-if "@" not in email:
-    raise ValueError("Invalid email address")
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
