@@ -31,11 +31,12 @@ from django.views.decorators.cache import cache_page
 from .forms import CommentForm
 from django.core.mail import send_mail
 from django.conf import settings
-from episode_one.secrets import EMAIL_HOST_USER
+# from episode_one.secrets import EMAIL_HOST_USER
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "default_email@example.com")
 
 import os
-
 api_key = os.environ.get('API_KEY')
+# api_key = os.environ.get('API_KEY')
 base_url = 'https://api.themoviedb.org/3/search/tv'
 
 
@@ -472,7 +473,7 @@ def comment_submit(request):
             # Sends email notification
             subject = 'New User Message'
             email_message = f'You have received a new message from {name} ({email}).\n\nMessage: {message}'
-            recipient_list = [settings.EMAIL_HOST_USER]  
+            recipient_list = [EMAIL_HOST_USER] 
             from_email = settings.DEFAULT_FROM_EMAIL
             
             send_mail(subject, email_message, from_email, recipient_list, fail_silently=False)
