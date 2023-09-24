@@ -28,6 +28,7 @@ from django.views.decorators.cache import cache_page
 
 
 # For Email functionality 
+import os
 from .forms import CommentForm
 from django.core.mail import send_mail
 from django.conf import settings
