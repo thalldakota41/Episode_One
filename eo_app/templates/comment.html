@@ -47,9 +47,14 @@
     </div>
 
     <script>
-        $('.form-wrapper button.submit').click(function(e){
-            // prevent default submit
-            e.preventDefault();
+        $(document).ready(function() {
+            $('.form-wrapper button.submit').click(function(e){
+                // prevent default submit
+                e.preventDefault();
+                
+                // submit the form programmatically
+                $(this).closest('form').submit();
+            });
         });
     </script>
 

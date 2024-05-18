@@ -73,7 +73,7 @@
           <h3><a href="{% url 'creator' creator_of_the_month.creator_id %}">{{ creator_of_the_month.creator_name }}</a></h3>
           <p>Current Scripts in Database:</p>
           <ul class="script-list">
-            {% for show in creator_of_the_month.current_scripts %}
+            {% for show in creator_of_the_month.current_scripts|slice:":3" %}
               <li>
                 <img src="{{ show.poster.url }}" alt="{{ show.title }} Poster">
               </li>

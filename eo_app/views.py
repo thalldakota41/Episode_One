@@ -273,7 +273,7 @@ def creator_page(request, id):
         similar_creators = [c for c in similar_creators if c.gender == 'F' or c.gender == 'O']
 
     random.shuffle(similar_creators)
-    similar_creators = similar_creators[:9]
+    similar_creators = similar_creators[:10]
 
     # Initializes an empty dictionary to store recommended creators data
     recom_creators = {}

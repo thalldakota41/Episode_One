@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import sys
 import dj_database_url
+# for api key 
+import dotenv
+dotenv.load_dotenv()
 
 from pathlib import Path
 
@@ -26,21 +29,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
-#     SECRET_KEY = f.read().strip()
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
-
-
-
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG =   str(os.environ.get('DEBUG')) == "1"
 
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
+ALLOWED_HOSTS = []
+if not DEBUG:
+    ALLOWED_HOSTS += [os.environ.get('DJANGO_ALLOWED_HOST')]
 
 # Application definition
 
@@ -94,34 +93,44 @@ WSGI_APPLICATION = 'episode_one.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
-if DEVELOPMENT_MODE is True:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+POSTGRES_DB = os.environ.get('POSTGRES_DB')
+POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
+POSTGRES_USER = os.environ.get('POSTGRES_USER')
+POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
+POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
+
+POSTGRES_READY = (
+    POSTGRES_DB is not None
+    and POSTGRES_PASSWORD is not None
+    and POSTGRES_USER is not None
+    and POSTGRES_HOST is not None
+    and POSTGRES_PORT is not None
+)
+
+if POSTGRES_READY:
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        'defualt': {
+            'ENGINE': 'django.db.backends.postgresql',
+            "NAME": POSTGRES_DB,
+            "USER": POSTGRES_USER,
+            "PASSWORD": POSTGRES_PASSWORD,
+            "HOST": POSTGRES_HOST,
+            "PORT": POSTGRES_PORT
         }
     }
-elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-    if os.getenv("DATABASE_URL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-    }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # },
-    # 'cassandra': {
-    #     'ENGINE': 'django_cassandra_engine',
-    #     'NAME': 'your_cassandra_keyspace',
-    #     'HOST': '127.0.0.1',
-    #     'OPTIONS': {
-    #         'replication': {
-    #             'strategy_class': 'SimpleStrategy',
-    #             'replication_factor': 1,
-    #         }
-    #     }
-    # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'mydatabase',
+#     }
+# }
 
 
 # Password validation
@@ -158,12 +167,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
 # List if directories that house static files
-STATICFILES_DIRS = [os.path.join(BASE_DIR, '/static/')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/screenplays')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
@@ -172,6 +181,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 
 # for email confirmations and setup
 # from .secrets import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
@@ -186,9 +197,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
-# for api key 
-import dotenv
-dotenv.load_dotenv()
+
 
 
 
