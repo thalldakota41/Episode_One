@@ -92,60 +92,39 @@ WSGI_APPLICATION = 'episode_one.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
-# POSTGRES_DB = os.environ.get('POSTGRES_DB')
-# POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
-# POSTGRES_USER = os.environ.get('POSTGRES_USER')
-# POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
-# POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
+POSTGRES_DB = os.environ.get('POSTGRES_DB')
+POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
+POSTGRES_USER = os.environ.get('POSTGRES_USER')
+POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
+POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
 
-# POSTGRES_READY = (
-#     POSTGRES_DB is not None
-#     and POSTGRES_PASSWORD is not None
-#     and POSTGRES_USER is not None
-#     and POSTGRES_HOST is not None
-#     and POSTGRES_PORT is not None
-# )
+POSTGRES_READY = (
+    POSTGRES_DB is not None
+    and POSTGRES_PASSWORD is not None
+    and POSTGRES_USER is not None
+    and POSTGRES_HOST is not None
+    and POSTGRES_PORT is not None
+)
 
-# if POSTGRES_READY:
-#     DATABASES = {
-#         'defualt': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             "NAME": POSTGRES_DB,
-#             "USER": POSTGRES_USER,
-#             "PASSWORD": POSTGRES_PASSWORD,
-#             "HOST": POSTGRES_HOST,
-#             "PORT": POSTGRES_PORT
-#         }
-#     }
-#suggested DO db reconfig
-import os
-import sys
-import dj_database_url
-
-# Assuming BASE_DIR is defined in your settings
-
-if os.getenv('DEVELOPMENT_MODE', 'False') == 'True':
-    # Development mode settings with SQLite
+if POSTGRES_READY:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'defualt': {
+            'ENGINE': 'django.db.backends.postgresql',
+            "NAME": POSTGRES_DB,
+            "USER": POSTGRES_USER,
+            "PASSWORD": POSTGRES_PASSWORD,
+            "HOST": POSTGRES_HOST,
+            "PORT": POSTGRES_PORT
         }
     }
-elif len(sys.argv) > 1 and sys.argv[1] != 'collectstatic':
-    # Production mode settings using DATABASE_URL environment variable
-    DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-    }
-else:
-    raise Exception('DATABASE_URL environment variable not defined')
+
 
 
 # Password validation
