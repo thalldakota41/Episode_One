@@ -125,19 +125,27 @@ DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 #         }
 #     }
 #suggested DO db reconfig
-if DEVELOPMENT_MODE is True:
+import os
+import sys
+import dj_database_url
+
+# Assuming BASE_DIR is defined in your settings
+
+if os.getenv('DEVELOPMENT_MODE', 'False') == 'True':
+    # Development mode settings with SQLite
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-    if os.getenv("DATABASE_URL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
+elif len(sys.argv) > 1 and sys.argv[1] != 'collectstatic':
+    # Production mode settings using DATABASE_URL environment variable
     DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
     }
+else:
+    raise Exception('DATABASE_URL environment variable not defined')
 
 
 # Password validation
