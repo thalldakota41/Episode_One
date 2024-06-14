@@ -134,11 +134,11 @@ if DEVELOPMENT_MODE:
 else:
     DATABASES = {}
     if 'collectstatic' not in sys.argv:
-        POSTGRES_DB = os.environ.get('POSTGRES_DB')
-        POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
-        POSTGRES_USER = os.environ.get('POSTGRES_USER')
-        POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
-        POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
+        POSTGRES_DB = os.getenv('POSTGRES_DB')
+        POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
+        POSTGRES_USER = os.getenv('POSTGRES_USER')
+        POSTGRES_HOST = os.getenv('POSTGRES_HOST')
+        POSTGRES_PORT = os.getenv('POSTGRES_PORT')
 
         POSTGRES_READY = (
             POSTGRES_DB and POSTGRES_PASSWORD and POSTGRES_USER and POSTGRES_HOST and POSTGRES_PORT
