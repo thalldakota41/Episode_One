@@ -12,12 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 import sys
-import dj_database_url
+
 # for api key 
 import dotenv
-dotenv.load_dotenv()
-
 from pathlib import Path
+dotenv.load_dotenv()
 
 from django.core.management.utils import get_random_secret_key
 
@@ -136,8 +135,9 @@ DATABASES = {
 
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
-if DATABASE_URL:
-    DATABASES['default'] = dj_database_url.parse(DATABASE_URL)
+if 'DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 else:
     POSTGRES_DB = os.environ.get('POSTGRES_DB')
     POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
