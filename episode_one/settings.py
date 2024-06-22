@@ -121,7 +121,10 @@ if POSTGRES_READY:
             "USER": POSTGRES_USER,
             "PASSWORD": POSTGRES_PASSWORD,
             "HOST": POSTGRES_HOST,
-            "PORT": POSTGRES_PORT
+            "PORT": POSTGRES_PORT,
+            'OPTIONS': {
+                'sslmode': 'require',  # Ensure SSL is required for the connection
+            },
         }
     }
 
