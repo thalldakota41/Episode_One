@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =   str(os.environ.get('DEBUG')) == "1"
+DEBUG =   str(os.environ.get('DEBUG')) == "1" # 1 == True
 
 ALLOWED_HOSTS = []
 if not DEBUG:
@@ -89,43 +89,11 @@ WSGI_APPLICATION = 'episode_one.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+import dj_database_url
+
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# POSTGRES_DB = os.environ.get('POSTGRES_DB')
-# POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
-# POSTGRES_USER = os.environ.get('POSTGRES_USER')
-# POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
-# POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
-
-# POSTGRES_READY = (
-#     POSTGRES_DB is not None
-#     and POSTGRES_PASSWORD is not None
-#     and POSTGRES_USER is not None
-#     and POSTGRES_HOST is not None
-#     and POSTGRES_PORT is not None
-# )
-
-# if POSTGRES_READY:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             "NAME": POSTGRES_DB,
-#             "USER": POSTGRES_USER,
-#             "PASSWORD": POSTGRES_PASSWORD,
-#             "HOST": POSTGRES_HOST,
-#             "PORT": POSTGRES_PORT,
-#             'OPTIONS': {
-#                 'sslmode': 'require',  # Ensure SSL is required for the connection
-#             },
-#         }
-#     }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -133,40 +101,75 @@ DATABASES = {
     }
 }
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
+POSTGRES_DB = os.environ.get('POSTGRES_DB')
+POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
+POSTGRES_USER = os.environ.get('POSTGRES_USER')
+POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
+POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
 
-if 'DATABASE_URL' in os.environ:
-    import dj_database_url
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-else:
-    POSTGRES_DB = os.environ.get('POSTGRES_DB')
-    POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
-    POSTGRES_USER = os.environ.get('POSTGRES_USER')
-    POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
-    POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
+POSTGRES_READY = (
+    POSTGRES_DB is not None
+    and POSTGRES_PASSWORD is not None
+    and POSTGRES_USER is not None
+    and POSTGRES_HOST is not None
+    and POSTGRES_PORT is not None
+)
 
-    POSTGRES_READY = (
-        POSTGRES_DB is not None
-        and POSTGRES_PASSWORD is not None
-        and POSTGRES_USER is not None
-        and POSTGRES_HOST is not None
-        and POSTGRES_PORT is not None
-    )
-
-    if POSTGRES_READY:
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'NAME': POSTGRES_DB,
-                'USER': POSTGRES_USER,
-                'PASSWORD': POSTGRES_PASSWORD,
-                'HOST': POSTGRES_HOST,
-                'PORT': POSTGRES_PORT,
-                'OPTIONS': {
-                    'sslmode': 'require',
-                },
-            }
+if POSTGRES_READY:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            "NAME": POSTGRES_DB,
+            "USER": POSTGRES_USER,
+            "PASSWORD": POSTGRES_PASSWORD,
+            "HOST": POSTGRES_HOST,
+            "PORT": POSTGRES_PORT,
+            # 'OPTIONS': {
+            #     'sslmode': 'require',  # Ensure SSL is required for the connection
+            # },
         }
+    }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# DATABASE_URL = os.environ.get('DATABASE_URL')
+
+# if 'DATABASE_URL' in os.environ:
+#     import dj_database_url
+#     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# else:
+#     POSTGRES_DB = os.environ.get('POSTGRES_DB')
+#     POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
+#     POSTGRES_USER = os.environ.get('POSTGRES_USER')
+#     POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
+#     POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
+
+#     POSTGRES_READY = (
+#         POSTGRES_DB is not None
+#         and POSTGRES_PASSWORD is not None
+#         and POSTGRES_USER is not None
+#         and POSTGRES_HOST is not None
+#         and POSTGRES_PORT is not None
+#     )
+
+#     if POSTGRES_READY:
+#         DATABASES = {
+#             'default': {
+#                 'ENGINE': 'django.db.backends.postgresql',
+#                 'NAME': POSTGRES_DB,
+#                 'USER': POSTGRES_USER,
+#                 'PASSWORD': POSTGRES_PASSWORD,
+#                 'HOST': POSTGRES_HOST,
+#                 'PORT': POSTGRES_PORT,
+#                 'OPTIONS': {
+#                     'sslmode': 'require',
+#                 },
+#             }
+#         }
 
 
 # Password validation
