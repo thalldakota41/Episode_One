@@ -161,6 +161,13 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 from cdn.conf import * # noqa
 
+from cdn.backends import MediaRootS3Boto3Storage
+
+# Media settings
+DEFAULT_FILE_STORAGE = "cdn.backends.MediaRootS3Boto3Storage"
+
+MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{AWS_MEDIA_LOCATION}/'
+
 # https://episodeone.sfo3.digitaloceanspaces.com
 
 # Default primary key field type
