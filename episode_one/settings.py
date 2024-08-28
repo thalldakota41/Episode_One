@@ -155,7 +155,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/screenplays')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+MEDIA_URL = None
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
@@ -166,7 +166,8 @@ from cdn.backends import MediaRootS3Boto3Storage
 # Media settings
 DEFAULT_FILE_STORAGE = "cdn.backends.MediaRootS3Boto3Storage"
 
-MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{AWS_MEDIA_LOCATION}/'
+MEDIA_URL = 'https://episodeone.sfo3.digitaloceanspaces.com/screenplays/'
+
 
 # https://episodeone.sfo3.digitaloceanspaces.com
 

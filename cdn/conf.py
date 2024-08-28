@@ -12,7 +12,7 @@ AWS_LOCATION = "https://episodeone.sfo3.digitaloceanspaces.com"
 # Static and Media settings
 DEFAULT_FILE_STORAGE = "cdn.backends.MediaRootS3Boto3Storage"
 STATICFILES_STORAGE = "cdn.backends.StaticRootS3Boto3Storage"
-AWS_MEDIA_LOCATION = 'media'
-PUBLIC_MEDIA_LOCATION = 'media'
+AWS_MEDIA_LOCATION = 'screenplays'
+PUBLIC_MEDIA_LOCATION = 'screenplays'
 MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{AWS_MEDIA_LOCATION}/'
 STATIC_URL = f'{AWS_S3_ENDPOINT_URL}/static/'

@@ -5,5 +5,5 @@ class StaticRootS3Boto3Storage(S3Boto3Storage):
     default_acl = 'public-read'
 
 class MediaRootS3Boto3Storage(S3Boto3Storage):
-    location = 'media'
+    location = 'screenplays'
     default_acl = 'public-read'
