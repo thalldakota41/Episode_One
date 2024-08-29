@@ -16,3 +16,5 @@ AWS_MEDIA_LOCATION = 'screenplays'
 PUBLIC_MEDIA_LOCATION = 'screenplays'
 MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{AWS_MEDIA_LOCATION}/'
 STATIC_URL = f'{AWS_S3_ENDPOINT_URL}/static/'
+
+# to see if changings are being pushed to github
